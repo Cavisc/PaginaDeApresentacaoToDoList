@@ -1,0 +1,31 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+header {
+  align-items: center;
+  background: red;
+  display: flex;
+  height: 8vh;
+  justify-content: flex-start;
+  padding: 0 2rem;
+}
+
+main {
+  align-items: center;
+  display: flex;
+  justify-content: space-between;
+  padding: 1rem 2rem;
+  height: 85vh;
+}
+
+footer {
+  align-items: center;
+  background: red;
+  display: flex;
+  height: 7vh;
+  justify-content: space-between;
+  padding: 0 2rem;
+}
