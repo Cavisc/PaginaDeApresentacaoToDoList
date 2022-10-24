@@ -58,6 +58,7 @@ main {
   flex-direction: column;
   gap: 1.5rem;
   padding: 0.7rem;
+  width: 200px;
 }
 
 .listas_itens {
@@ -88,11 +89,14 @@ main {
 .btn-add {
   align-items: center;
   background: gray;
+  border: none;
   border-radius: 100%;
   color: white;
+  cursor: pointer;
   display: flex;
   height: 4rem;
   justify-content: center;
+  outline: none;
   text-decoration: none;
   transition: 0.3s;
   width: 4rem;
@@ -157,6 +161,18 @@ main {
 
 .lista-item.visivel {
   display: block;
+  animation: transicao 0.5s ease-in-out;
+}
+
+@keyframes transicao {
+  from {
+    transform: translateY(100px);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
 }
 
 .lista_titulo {
@@ -206,6 +222,11 @@ main {
   background: #79e34f;
 }
 
+input {
+  height: 1.5rem;
+  width: 1.5rem;
+}
+
 .menu {
   align-items: center;
   display: flex;
@@ -242,6 +263,66 @@ main {
   background: var(--verde);
 }
 
+.aviso-container {
+  align-items: center;
+  background: rgba(255, 255, 255, 0.5);
+  display: none;
+  height: 100vh;
+  justify-content: center;
+  left: 0;
+  position: fixed;
+  top: 0;
+  width: 100vw;
+  z-index: 2000;
+}
+
+.aviso-container.visivel {
+  display: flex;
+  animation: avisar 0.5s ease-in-out;
+}
+
+@keyframes avisar {
+  from {
+    opacity: 0;
+    transform: scale(0);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+.aviso {
+  min-width: 35vw;
+  text-align: center;
+  background: var(--azul);
+  margin: 0.5rem;
+  padding: 3rem 2rem 2rem;
+  border-radius: 16px;
+  position: relative;
+}
+
+.fechar {
+  position: absolute;
+  top: 0px;
+  right: 0px;
+  padding: 1rem;
+  color: var(--text-color-light);
+  border: none;
+  border-radius: 100%;
+  background: var(--base-color);
+  font-size: 1.2rem;
+  cursor: pointer;
+}
+
+.aviso_titulo {
+  font-size: 3rem;
+}
+
+.aviso_image {
+  width: 35vw;
+}
+
 footer {
   align-items: center;
   background: var(--azul);
@@ -257,4 +338,41 @@ footer {
 footer > .logo {
   position: absolute;
   right: 2rem;
+}
+
+@media screen and (max-width: 767px) {
+  main {
+    flex-direction: column;
+  }
+
+  .listas {
+    width: 100%;
+  }
+
+  .listas_itens {
+    flex-direction: row;
+  }
+
+  .legenda {
+    flex-direction: row;
+  }
+
+  .lista {
+    margin-bottom: 6rem;
+    width: 95%;
+  }
+
+  .menu {
+    bottom: 0;
+    flex-direction: row;
+    position: relative;
+  }
+
+  .menu_itens {
+    flex-direction: row;
+  }
+
+  footer {
+    display: none;
+  }
 }

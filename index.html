@@ -21,49 +21,49 @@
     <main>
       <section class="barra-esquerda">
         <div class="listas">
-          <h3 class="listas_titulo">Minhas Listas:</h3>
-          <ul class="listas_itens">
+          <h3 class="listas_titulo">My Lists:</h3>
+          <ul class="listas_itens" id="listas">
             <li class="listas_item">
-              <a href="#" id="1" class="listas_link ativo">Lista 1</a>
+              <a href="#" id="1" class="listas_link ativo">Música</a>
             </li>
             <li class="listas_item">
-              <a href="#" id="2" class="listas_link">Lista 2</a>
+              <a href="#" id="2" class="listas_link">Desenho</a>
             </li>
             <li class="listas_item">
-              <a href="#" id="3" class="listas_link">Lista 3</a>
+              <a href="#" id="3" class="listas_link">Vídeos</a>
             </li>
             <li class="listas_item">
-              <a href="#" id="4" class="listas_link">Lista 4</a>
+              <a href="#" id="4" class="listas_link">Faculdade</a>
             </li>
             <li class="listas_item">
-              <a href="#" id="5" class="listas_link">Lista 5</a>
+              <a href="#" id="5" class="listas_link">Metas</a>
             </li>
           </ul>
         </div>
 
-        <a href="#" class="btn-add"><i data-feather="plus"></i></a>
+        <button class="btn-add" id="btn-add"><i data-feather="plus"></i></button>
 
         <div class="legenda">
-          <h4 class="legenda_titulo">Legenda:</h4>
+          <h4 class="legenda_titulo">Subtitle:</h4>
           <ul class="legenda_itens">
             <li class="legenda_item">
               <div class="legenda_circulo c1"></div>
-              Não Urgente
+              Not Urgent
             </li>
             <li class="legenda_item">
               <div class="legenda_circulo c2"></div>
-              Pouco Urgente
+              Little Urgent
             </li>
             <li class="legenda_item">
               <div class="legenda_circulo c3"></div>
-              Urgente
+              Urgent
             </li>
           </ul>
         </div>
       </section>
 
       <section class="lista">
-        <div class="lista-item visivel">
+        <div class="lista-item visivel" id="l1">
           <h1 class="lista_titulo">Música</h1>
           <div class="tarefas">
             <div class="tarefa">
@@ -94,7 +94,7 @@
           </div>
         </div>
 
-        <div class="lista-item">
+        <div class="lista-item" id="l2">
           <h1 class="lista_titulo">Desenho</h1>
           <div class="tarefas">
             <div class="tarefa">
@@ -115,7 +115,7 @@
           </div>
         </div>
 
-        <div class="lista-item">
+        <div class="lista-item" id="l3">
           <h1 class="lista_titulo">Vídeos</h1>
           <div class="tarefas">
             <div class="tarefa">
@@ -141,7 +141,7 @@
           </div>
         </div>
 
-        <div class="lista-item">
+        <div class="lista-item" id="l4">
           <h1 class="lista_titulo">Faculdade</h1>
           <div class="tarefas">
             <div class="tarefa">
@@ -167,7 +167,7 @@
           </div>
         </div>
 
-        <div class="lista-item">
+        <div class="lista-item" id="l5">
           <h1 class="lista_titulo">Metas</h1>
           <div class="tarefas">
             <div class="tarefa">
@@ -192,16 +192,23 @@
       <section class="menu">
         <ul class="menu_itens">
           <li class="menu_item">
-            <a href="#" class="menu_link"><i data-feather="home"></i></a>
+            <a id="home" href="#" class="menu_link"><i data-feather="home"></i></a>
           </li>
           <li class="menu_item">
-            <a href="#" class="menu_link"><i data-feather="user"></i></a>
+            <a id="user" href="#" class="menu_link"><i data-feather="user"></i></a>
           </li>
           <li class="menu_item">
-            <a href="#" class="menu_link"><i data-feather="log-out"></i></a>
+            <a id="sair" href="#" class="menu_link"><i data-feather="log-out"></i></a>
           </li>
         </ul>
       </section>
+
+      <div id="aviso" class="aviso-container">
+        <div class="aviso">
+          <button class="fechar" id="fechar-aviso"><i data-feather="x"></i></button>
+          <h1 class="aviso_titulo">Coming Soon!</h1>
+          <img class="aviso_image" src="./assets/imagem-aviso.png" alt="">
+        </div>
     </main>
 
     <footer>
@@ -212,7 +219,7 @@
     <script src="https://unpkg.com/feather-icons"></script>
     <script>
       feather.replace();
-    </script>
-    <script src=./index.js></script>
+      </script>
+      <script src=./index.js></script>
   </body>
 </html>
