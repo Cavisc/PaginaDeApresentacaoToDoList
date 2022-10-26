@@ -1,5 +1,3 @@
-//Não consegui terminar o JSON
-
 const dbMock = {
   listas: [
     {
@@ -65,8 +63,31 @@ const aviso = document.getElementById("aviso");
 const home = document.getElementById("home");
 const user = document.getElementById("user");
 const sair = document.getElementById("sair");
+const linksListas = document.querySelector("#listas");
 
-let idVisivel = 0;
+let linkAtivo = 0;
+let visivel = "visivel";
+let naoVisivel = "";
+
+linksListas.addEventListener("click", (e) => {
+  let elClicado = e.target;
+  let linkativado = document.getElementById(linkAtivo);
+
+  if (
+    elClicado.id == linkAtivo ||
+    elClicado.id == "listas" ||
+    elClicado == ""
+  ) {
+    return;
+  } else {
+    console.log("Clicado");
+    elClicado.classList.add("ativo");
+    linkativado.classList.remove("ativo");
+    linkAtivo = elClicado.id;
+  }
+
+  montaListas();
+});
 
 btnAdd.addEventListener("click", (e) => {
   addVisibilidade(aviso);
@@ -109,15 +130,16 @@ function montaListas() {
       <input type="checkbox" id="" />
     </div>`;
     }
-    if (lista.id == idVisivel) {
-      str += `<div class="lista-item visivel" id="${lista.id}">
+
+    if (lista.id == linkAtivo) {
+      str += `<div class="lista-item ${visivel}" id="${lista.id}">
     <h1 class="lista_titulo">${lista.titulo}</h1>
     <div class="tarefas">
       ${strTarefa}
     </div>
   </div>`;
     } else {
-      str += `<div class="lista-item" id="${lista.id}">
+      str += `<div class="lista-item ${naoVisivel}" id="${lista.id}">
     <h1 class="lista_titulo">${lista.titulo}</h1>
     <div class="tarefas">
       ${strTarefa}
