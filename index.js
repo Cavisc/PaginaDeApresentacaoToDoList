@@ -1,17 +1,63 @@
-const listas = document.getElementById("listas");
-let elMenuSelected = 1;
+//Não consegui terminar o JSON
 
-const linkLista1 = document.getElementById("1");
-const linkLista2 = document.getElementById("2");
-const linkLista3 = document.getElementById("3");
-const linkLista4 = document.getElementById("4");
-const linkLista5 = document.getElementById("5");
-
-const lista1 = document.getElementById("l1");
-const lista2 = document.getElementById("l2");
-const lista3 = document.getElementById("l3");
-const lista4 = document.getElementById("l4");
-const lista5 = document.getElementById("l5");
+const dbMock = {
+  listas: [
+    {
+      id: 0,
+      titulo: "Música",
+      tarefas: [
+        {
+          id: 0,
+          ordem: "1",
+          prioridade: "pouca-emergencia",
+          descricao: "Aprender novos acordes",
+        },
+        {
+          id: 1,
+          ordem: "2",
+          prioridade: "emergencia",
+          descricao: "Terminar arranjo da música X",
+        },
+        {
+          id: 2,
+          ordem: "3",
+          prioridade: "emergencia",
+          descricao: "Praticar exercícios de digitação",
+        },
+        {
+          id: 3,
+          ordem: "4",
+          prioridade: "nao-emergencia",
+          descricao: "Estudar a escala menor",
+        },
+      ],
+    },
+    {
+      id: 1,
+      titulo: "Desenho",
+      tarefas: [
+        {
+          id: 0,
+          ordem: "1",
+          prioridade: "emergencia",
+          descricao: "Terminar o desenho Y",
+        },
+        {
+          id: 1,
+          ordem: "2",
+          prioridade: "pouca-emergencia",
+          descricao: "Estudar o círculo cromático",
+        },
+        {
+          id: 2,
+          ordem: "3",
+          prioridade: "nao-emergencia",
+          descricao: "Praticar perspectiva",
+        },
+      ],
+    },
+  ],
+};
 
 const btnAdd = document.getElementById("btn-add");
 const btnFechar = document.getElementById("fechar-aviso");
@@ -20,43 +66,7 @@ const home = document.getElementById("home");
 const user = document.getElementById("user");
 const sair = document.getElementById("sair");
 
-listas.addEventListener("click", (e) => {
-  const target = e.target.id;
-
-  if (target == "lista" || target == "" || target == elMenuSelected) {
-    return;
-  }
-
-  const elMenu = document.getElementById(target);
-  const elMenuReturned = document.getElementById(elMenuSelected);
-
-  elMenu.classList.add("ativo");
-  elMenuReturned.classList.remove("ativo");
-
-  if (target == 1) {
-    lista1.classList.add("visivel");
-
-    removeClass(lista2, lista3, lista4, lista5);
-  } else if (target == 2) {
-    lista2.classList.add("visivel");
-
-    removeClass(lista1, lista3, lista4, lista5);
-  } else if (target == 3) {
-    lista3.classList.add("visivel");
-
-    removeClass(lista1, lista2, lista4, linkLista5);
-  } else if (target == 4) {
-    lista4.classList.add("visivel");
-
-    removeClass(lista1, lista2, lista3, lista5);
-  } else if (target == 5) {
-    lista5.classList.add("visivel");
-
-    removeClass(lista1, lista2, lista3, lista4);
-  }
-
-  elMenuSelected = target;
-});
+let idVisivel = 0;
 
 btnAdd.addEventListener("click", (e) => {
   addVisibilidade(aviso);
@@ -78,20 +88,6 @@ btnFechar.addEventListener("click", (e) => {
   removerVisibilidade(aviso);
 });
 
-function removeClass(el, el2, el3, el4) {
-  el.classList.remove("visivel");
-  el2.classList.remove("visivel");
-  el3.classList.remove("visivel");
-  el4.classList.remove("visivel");
-}
-
-function removeClassInfo(el, el2, el3, el4) {
-  el.classList.remove("visivel");
-  el2.classList.remove("visivel");
-  el3.classList.remove("visivel");
-  el4.classList.remove("visivel");
-}
-
 function addVisibilidade(el) {
   el.classList.add("visivel");
 }
@@ -99,3 +95,40 @@ function addVisibilidade(el) {
 function removerVisibilidade(el) {
   el.classList.remove("visivel");
 }
+
+function montaListas() {
+  let str = "";
+  let strTarefa = "";
+  for (let i = 0; i < dbMock.listas.length; i++) {
+    let lista = dbMock.listas[i];
+    for (let j = 0; j < lista.tarefas.length; j++) {
+      let tarefa = lista.tarefas[j];
+      strTarefa += `<div class="tarefa">
+      <p class="prioridade ${tarefa.prioridade}">${tarefa.ordem}</p>
+      <p class="descricao">${tarefa.descricao}</p>
+      <input type="checkbox" id="" />
+    </div>`;
+    }
+    if (lista.id == idVisivel) {
+      str += `<div class="lista-item visivel" id="${lista.id}">
+    <h1 class="lista_titulo">${lista.titulo}</h1>
+    <div class="tarefas">
+      ${strTarefa}
+    </div>
+  </div>`;
+    } else {
+      str += `<div class="lista-item" id="${lista.id}">
+    <h1 class="lista_titulo">${lista.titulo}</h1>
+    <div class="tarefas">
+      ${strTarefa}
+    </div>
+  </div>`;
+    }
+    strTarefa = "";
+  }
+  document.querySelector(".lista").innerHTML = str;
+}
+
+document.body.onload = () => {
+  montaListas();
+};
