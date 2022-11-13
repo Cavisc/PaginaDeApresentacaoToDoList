@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="pt-br">
+<html lang="en">
   <head>
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
@@ -23,16 +23,17 @@
         <div class="listas">
           <h3 class="listas_titulo">My Lists:</h3>
           <ul class="listas_itens" id="listas">
-            <li class="listas_item">
+            <!--li class="listas_item">
               <a href="#" id="0" class="listas_link ativo">Música</a>
             </li>
             <li class="listas_item">
               <a href="#" id="1" class="listas_link">Desenho</a>
-            </li>
+            </li-->
+            <i data-feather="meh" class="link_icone"></i>
           </ul>
         </div>
 
-        <button class="btn-add" id="btn-add"><i data-feather="plus"></i></button>
+        <button onclick="window.location.href = 'cadastro.html'" class="btn-add" id="btn-add"><i data-feather="plus"></i></button>
 
         <div class="legenda">
           <h4 class="legenda_titulo">Subtitle:</h4>
@@ -202,12 +203,13 @@
           <h1 class="aviso_titulo">Coming Soon!</h1>
           <img class="aviso_image" src="./assets/imagem-aviso.png" alt="">
         </div>
+      </div>
     </main>
 
-    <footer>
+    <!--footer>
       <p class="copy-text">&copy ChillOut 2022</p>
       <div class="logo">ChillOut</div>
-    </footer>
+    </footer-->
 
     <script src="https://unpkg.com/feather-icons"></script>
     <script>

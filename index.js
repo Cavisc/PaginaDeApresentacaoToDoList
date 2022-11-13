@@ -1,4 +1,4 @@
-const dbMock = {
+/*const dbMock = {
   listas: [
     {
       id: 0,
@@ -25,6 +25,36 @@ const dbMock = {
         {
           id: 3,
           ordem: "4",
+          prioridade: "nao-emergencia",
+          descricao: "Estudar a escala menor",
+        },
+        {
+          id: 4,
+          ordem: "5",
+          prioridade: "nao-emergencia",
+          descricao: "Estudar a escala menor",
+        },
+        {
+          id: 5,
+          ordem: "6",
+          prioridade: "nao-emergencia",
+          descricao: "Estudar a escala menor",
+        },
+        {
+          id: 6,
+          ordem: "7",
+          prioridade: "nao-emergencia",
+          descricao: "Estudar a escala menor",
+        },
+        {
+          id: 7,
+          ordem: "8",
+          prioridade: "nao-emergencia",
+          descricao: "Estudar a escala menor",
+        },
+        {
+          id: 8,
+          ordem: "9",
           prioridade: "nao-emergencia",
           descricao: "Estudar a escala menor",
         },
@@ -55,7 +85,9 @@ const dbMock = {
       ],
     },
   ],
-};
+};*/
+
+let listasCadastradas = new Array();
 
 const btnAdd = document.getElementById("btn-add");
 const btnFechar = document.getElementById("fechar-aviso");
@@ -64,10 +96,19 @@ const home = document.getElementById("home");
 const user = document.getElementById("user");
 const sair = document.getElementById("sair");
 const linksListas = document.querySelector("#listas");
+const iconeListas = document.querySelector(".link_icone");
 
 let linkAtivo = 0;
 let visivel = "visivel";
 let naoVisivel = "";
+
+iconeListas.addEventListener("mouseenter", (e) => {
+  iconeListas.innerHTML = feather.icons["frown"].toSvg();
+});
+
+iconeListas.addEventListener("mouseout", (e) => {
+  iconeListas.innerHTML = feather.icons["meh"].toSvg();
+});
 
 linksListas.addEventListener("click", (e) => {
   let elClicado = e.target;
@@ -90,7 +131,7 @@ linksListas.addEventListener("click", (e) => {
 });
 
 btnAdd.addEventListener("click", (e) => {
-  addVisibilidade(aviso);
+  addVisibilidade(cadastro);
 });
 
 home.addEventListener("click", (e) => {
@@ -118,39 +159,150 @@ function removerVisibilidade(el) {
 }
 
 function montaListas() {
-  let str = "";
-  let strTarefa = "";
-  for (let i = 0; i < dbMock.listas.length; i++) {
-    let lista = dbMock.listas[i];
-    for (let j = 0; j < lista.tarefas.length; j++) {
-      let tarefa = lista.tarefas[j];
-      strTarefa += `<div class="tarefa">
+  // Pega array com listas no LS
+  if (localStorage.hasOwnProperty("listasCadastradas")) {
+    listasCadastradas = JSON.parse(localStorage.getItem("listasCadastradas"));
+
+    // Estruturação das listas
+    let str = "";
+    let strTarefa = "";
+    for (let i = 0; i < listasCadastradas.length; i++) {
+      let lista = listasCadastradas[i];
+      for (let j = 0; j < lista.tarefas.length; j++) {
+        let tarefa = lista.tarefas[j];
+        strTarefa += `<div class="tarefa">
       <p class="prioridade ${tarefa.prioridade}">${tarefa.ordem}</p>
       <p class="descricao">${tarefa.descricao}</p>
-      <input type="checkbox" id="" />
+      <input type="checkbox" id="check" />
     </div>`;
-    }
+      }
 
-    if (lista.id == linkAtivo) {
-      str += `<div class="lista-item ${visivel}" id="${lista.id}">
+      if (lista.id == linkAtivo) {
+        str += `<div class="lista-item ${visivel}" id="${lista.id}">
     <h1 class="lista_titulo">${lista.titulo}</h1>
     <div class="tarefas">
       ${strTarefa}
     </div>
   </div>`;
-    } else {
-      str += `<div class="lista-item ${naoVisivel}" id="${lista.id}">
+      } else {
+        str += `<div class="lista-item ${naoVisivel}" id="${lista.id}">
     <h1 class="lista_titulo">${lista.titulo}</h1>
     <div class="tarefas">
       ${strTarefa}
     </div>
   </div>`;
+      }
+      strTarefa = "";
     }
-    strTarefa = "";
+    document.querySelector(".lista").innerHTML = str;
+    riscaTarefa();
+  } else {
+    const image = `<img src="./assets/AddTasks.png" alt="lists" class="lista_imagem">`;
+    document.querySelector(".lista").innerHTML = image;
   }
-  document.querySelector(".lista").innerHTML = str;
+}
+
+function montaLinks() {
+  if (localStorage.hasOwnProperty("listasCadastradas")) {
+    listasCadastradas = JSON.parse(localStorage.getItem("listasCadastradas"));
+    const linksListas = document.querySelector("#listas");
+    let strLinks = "";
+
+    for (let i = 0; i < listasCadastradas.length; i++) {
+      let lista = listasCadastradas[i];
+      if (i == 0) {
+        strLinks += `<li class="listas_item">
+      <a href="#" id="${lista.id}" class="listas_link ativo">${lista.titulo}</a>
+    </li>`;
+      } else {
+        strLinks += `<li class="listas_item">
+      <a href="#" id="${lista.id}" class="listas_link">${lista.titulo}</a>
+    </li>`;
+      }
+    }
+    linksListas.innerHTML = strLinks;
+  }
+}
+
+function riscaTarefa() {
+  listasCadastradas = JSON.parse(localStorage.getItem("listasCadastradas"));
+
+  for (let i = 0; i < listasCadastradas.length; i++) {
+    const lista = listasCadastradas[i];
+
+    for (let j = 0; j < lista.tarefas.length; j++) {
+      if (document.querySelector("#check")) {
+        const checks = document.querySelectorAll("#check");
+
+        for (let k = 0; k < checks.length; k++) {
+          const check = checks[k];
+          let clicado = false;
+
+          check.addEventListener("click", (e) => {
+            const descricoes = document.querySelectorAll(".descricao");
+            const descricao = descricoes[k];
+
+            if (clicado && check.checked == false) {
+              descricao.style.textDecoration = "none";
+
+              clicado = false;
+
+              if (j == k) {
+                lista.tarefas[j].terminado = false;
+              }
+
+              localStorage.setItem(
+                "listasCadastradas",
+                JSON.stringify(listasCadastradas)
+              );
+            } else {
+              if (check.checked == true) {
+                descricao.style.textDecoration = "line-through";
+
+                clicado = true;
+
+                if (j == k) {
+                  lista.tarefas[j].terminado = true;
+                }
+
+                localStorage.setItem(
+                  "listasCadastradas",
+                  JSON.stringify(listasCadastradas)
+                );
+              }
+            }
+          });
+        }
+      }
+    }
+  }
+}
+
+function verficaRiscado() {
+  listasCadastradas = JSON.parse(localStorage.getItem("listasCadastradas"));
+
+  for (let i = 0; i < listasCadastradas.length; i++) {
+    const lista = listasCadastradas[i];
+
+    for (let j = 0; j < lista.tarefas.length; j++) {
+      const tarefa = lista.tarefas[j];
+
+      if (tarefa.terminado == true) {
+        const descricoes = document.querySelectorAll(".descricao");
+        const descricao = descricoes[j];
+        const checks = document.querySelectorAll("#check");
+        const check = checks[j];
+
+        descricao.style.textDecoration = "line-through";
+        check.checked = true;
+      }
+    }
+  }
 }
 
 document.body.onload = () => {
+  montaLinks();
   montaListas();
+  verficaRiscado();
+  riscaTarefa();
 };
