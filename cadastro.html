@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>ChillOut | Cadastro To-Do-List</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>    
+    <header>
+        <div class="logo">ChillOut</div>
+    </header>
+
+    <main>
+      <section class="barra-esquerda">
+        <a href="./index.html" class="btn-voltar"><i data-feather="list"></i> Go to my lists</a>
+      </section>
+
+      <div class="form-container" id="cadastro">
+        <div class="tela-cadastro">
+            <h1 class="form-titulo">List registration</h1>
+            <form>
+                <label for="title">Title</label>
+                <input type="text" id="title" />
+                <label for="number">Number of tasks</label>
+                <input type="number" id="number" />
+                <button class="form-btn" id="form-btn" type="button">Create tasks</button>
+                <div class="tarefas-cadastro" id="tarefas-cadastro">
+                  <!--<div class="form-tarefa">
+                      <span class="urgency">Urgency</span>
+                      <select name="urgency">
+                        <option class="nao-emergencia" value="nao-emergencia">Not Urgent</option>
+                        <option class="pouca-emergencia" value="pouca-emergencia">Little Urgent</option>
+                        <option class="emergencia" value="emergencia">Urgent</option>
+                      </select>
+                      <label class="descricao" for="descricao">Description</label>
+                      <input type="text" id="descricao-tarefa">
+                    </div>-->
+                    <span class="info"><i data-feather="info"></i> The maximum number of tasks per list is 10</span>
+                    <img src="./assets/Checklist.png" alt="checklist" class="checklist-image">
+                </div>
+                <button class="save-btn" id="save-btn" type="submit">Save List</button>
+            </form>
+          </div>
+        </div>
+
+        <section class="menu">
+          <ul class="menu_itens">
+            <li class="menu_item">
+              <a id="home" href="#" class="menu_link"><i data-feather="home"></i></a>
+            </li>
+            <li class="menu_item">
+              <a id="user" href="#" class="menu_link"><i data-feather="user"></i></a>
+            </li>
+            <li class="menu_item">
+              <a id="sair" href="#" class="menu_link"><i data-feather="log-out"></i></a>
+            </li>
+          </ul>
+        </section>
+
+        <section class="aviso_cadastro">
+          <div class="aviso_cadastro-container">
+            <div class="aviso_cadastro-mensagem">
+              <h2 class="aviso_cadastro-titulo">Registered list!</h2>
+              <i class="aviso_cadastro-icone" data-feather="smile"></i>
+            </div>
+            <div class="aviso_cadastro-botoes">
+              <a href="./index.html" class="aviso_cadastro-listas">Go to lists</a>
+              <a href="#" class="aviso_cadastro-add">Add new list</a>
+            </div>
+          </div>
+        </section>
+    </main>
+
+    <script src="https://unpkg.com/feather-icons"></script>
+    <script>
+      feather.replace();
+    </script>
+    <script src=./cadastro.js></script>
+
+  </body>
+</html>
