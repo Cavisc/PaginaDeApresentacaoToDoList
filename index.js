@@ -121,7 +121,6 @@ linksListas.addEventListener("click", (e) => {
   ) {
     return;
   } else {
-    console.log("Clicado");
     elClicado.classList.add("ativo");
     linkativado.classList.remove("ativo");
     linkAtivo = elClicado.id;
@@ -170,11 +169,19 @@ function montaListas() {
       let lista = listasCadastradas[i];
       for (let j = 0; j < lista.tarefas.length; j++) {
         let tarefa = lista.tarefas[j];
-        strTarefa += `<div class="tarefa">
+        if (tarefa.terminado == true) {
+          strTarefa += `<div class="tarefa">
+      <p class="prioridade ${tarefa.prioridade}">${tarefa.ordem}</p>
+      <p class="descricao concluido">${tarefa.descricao}</p>
+      <input type="checkbox" id="check" />
+    </div>`;
+        } else {
+          strTarefa += `<div class="tarefa">
       <p class="prioridade ${tarefa.prioridade}">${tarefa.ordem}</p>
       <p class="descricao">${tarefa.descricao}</p>
       <input type="checkbox" id="check" />
     </div>`;
+        }
       }
 
       if (lista.id == linkAtivo) {
@@ -243,12 +250,12 @@ function riscaTarefa() {
             const descricao = descricoes[k];
 
             if (clicado && check.checked == false) {
-              descricao.style.textDecoration = "none";
+              descricao.classList.remove("concluido");
 
               clicado = false;
 
               if (j == k) {
-                lista.tarefas[j].terminado = false;
+                lista.tarefas[k].terminado = false;
               }
 
               localStorage.setItem(
@@ -257,7 +264,7 @@ function riscaTarefa() {
               );
             } else {
               if (check.checked == true) {
-                descricao.style.textDecoration = "line-through";
+                descricao.classList.add("concluido");
 
                 clicado = true;
 
@@ -293,7 +300,7 @@ function verficaRiscado() {
         const checks = document.querySelectorAll("#check");
         const check = checks[j];
 
-        descricao.style.textDecoration = "line-through";
+        descricao.classList.add("concluido");
         check.checked = true;
       }
     }
