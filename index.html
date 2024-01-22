@@ -1,10 +1,17 @@
 <!DOCTYPE html>
-<html lang="pt-br">
+<html lang="en">
   <head>
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>ChillOut | To-Do-List</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="style.css" />
   </head>
   <body>
     <header>
@@ -14,52 +21,200 @@
     <main>
       <section class="barra-esquerda">
         <div class="listas">
-          <h3 class="listas_titulo">Minhas Listas:</h3>
-          <ul class="listas_itens">
-            <li class="listas_item">
-              <a href="#" class="listas_link">Lista 1</a>
+          <h3 class="listas_titulo">My Lists:</h3>
+          <ul class="listas_itens" id="listas">
+            <!--li class="listas_item">
+              <a href="#" id="0" class="listas_link ativo">Música</a>
             </li>
             <li class="listas_item">
-              <a href="#" class="listas_link">Lista 2</a>
-            </li>
-            <li class="listas_item">
-              <a href="#" class="listas_link">Lista 3</a>
-            </li>
-            <li class="listas_item">
-              <a href="#" class="listas_link">Lista 4</a>
-            </li>
-            <li class="listas_item">
-              <a href="#" class="listas_link">Lista 5</a>
-            </li>
+              <a href="#" id="1" class="listas_link">Desenho</a>
+            </li-->
+            <i data-feather="meh" class="link_icone"></i>
           </ul>
         </div>
 
-        <a href="#" class="btn-add">+</a>
+        <button onclick="window.location.href = 'cadastro.html'" class="btn-add" id="btn-add"><i data-feather="plus"></i></button>
 
         <div class="legenda">
-          <h3 class="legenda_titulo">Legenda:</h3>
+          <h4 class="legenda_titulo">Subtitle:</h4>
           <ul class="legenda_itens">
-            <li class="legenda_item">Não Urgente</li>
-            <li class="legenda_item">Pouco Urgente</li>
-            <li class="legenda_item">Urgente</li>
+            <li class="legenda_item">
+              <div class="legenda_circulo c1"></div>
+              Not Urgent
+            </li>
+            <li class="legenda_item">
+              <div class="legenda_circulo c2"></div>
+              Little Urgent
+            </li>
+            <li class="legenda_item">
+              <div class="legenda_circulo c3"></div>
+              Urgent
+            </li>
           </ul>
         </div>
       </section>
 
-      <section class="lista">TO-DO-LIST</section>
+      <section class="lista">
+        <!--
+          <div class="lista-item visivel" id="l1">
+          <h1 class="lista_titulo">Música</h1>
+          <div class="tarefas">
+            <div class="tarefa">
+              <p class="prioridade pouca-emergencia">1</p>
+              <p class="descricao">Aprender novos acordes</p>
+              <input type="checkbox" id="" />
+            </div>
+            <div class="tarefa">
+              <p class="prioridade emergencia">2</p>
+              <p class="descricao">Estudar partituras</p>
+              <input type="checkbox" id="" />
+            </div>
+            <div class="tarefa">
+              <p class="prioridade emergencia">3</p>
+              <p class="descricao">Terminar arranjo da música X</p>
+              <input type="checkbox" id="" />
+            </div>
+            <div class="tarefa">
+              <p class="prioridade nao-emergencia">4</p>
+              <p class="descricao">Praticar exercícios de digitação</p>
+              <input type="checkbox" id="" />
+            </div>
+            <div class="tarefa">
+              <p class="prioridade pouca-emergencia">5</p>
+              <p class="descricao">Estudar a escala menor</p>
+              <input type="checkbox" id="" />
+            </div>
+          </div>
+        </div>
+
+        <div class="lista-item" id="l2">
+          <h1 class="lista_titulo">Desenho</h1>
+          <div class="tarefas">
+            <div class="tarefa">
+              <p class="prioridade emergencia">1</p>
+              <p class="descricao">Terminar o desenho Y</p>
+              <input type="checkbox" id="" />
+            </div>
+            <div class="tarefa">
+              <p class="prioridade pouca-emergencia">2</p>
+              <p class="descricao">Estudar o círculo cromático</p>
+              <input type="checkbox" id="" />
+            </div>
+            <div class="tarefa">
+              <p class="prioridade nao-emergencia">3</p>
+              <p class="descricao">Praticar perspectiva</p>
+              <input type="checkbox" id="" />
+            </div>
+          </div>
+        </div>
+
+        <div class="lista-item" id="l3">
+          <h1 class="lista_titulo">Vídeos</h1>
+          <div class="tarefas">
+            <div class="tarefa">
+              <p class="prioridade pouca-emergencia">1</p>
+              <p class="descricao">Pesquisar trends</p>
+              <input type="checkbox" id="" />
+            </div>
+            <div class="tarefa">
+              <p class="prioridade emergencia">2</p>
+              <p class="descricao">Terminar roteiro do vídeo Z</p>
+              <input type="checkbox" id="" />
+            </div>
+            <div class="tarefa">
+              <p class="prioridade emergencia">3</p>
+              <p class="descricao">Editar vídeo A</p>
+              <input type="checkbox" id="" />
+            </div>
+            <div class="tarefa">
+              <p class="prioridade nao-emergencia">4</p>
+              <p class="descricao">Fazer thumbnail do vídeo B</p>
+              <input type="checkbox" id="" />
+            </div>
+          </div>
+        </div>
+
+        <div class="lista-item" id="l4">
+          <h1 class="lista_titulo">Faculdade</h1>
+          <div class="tarefas">
+            <div class="tarefa">
+              <p class="prioridade emergencia">1</p>
+              <p class="descricao">Terminar trabalho de TIAW</p>
+              <input type="checkbox" id="" />
+            </div>
+            <div class="tarefa">
+              <p class="prioridade nao-emergencia">2</p>
+              <p class="descricao">Ler artigo sobre C</p>
+              <input type="checkbox" id="" />
+            </div>
+            <div class="tarefa">
+              <p class="prioridade emergencia">3</p>
+              <p class="descricao">Estudar para prova de IC</p>
+              <input type="checkbox" id="" />
+            </div>
+            <div class="tarefa">
+              <p class="prioridade pouca-emergencia">4</p>
+              <p class="descricao">Criar projeto de LIP</p>
+              <input type="checkbox" id="" />
+            </div>
+          </div>
+        </div>
+
+        <div class="lista-item" id="l5">
+          <h1 class="lista_titulo">Metas</h1>
+          <div class="tarefas">
+            <div class="tarefa">
+              <p class="prioridade pouca-emergencia">1</p>
+              <p class="descricao">Alcançar 10k de inscritos</p>
+              <input type="checkbox" id="" />
+            </div>
+            <div class="tarefa">
+              <p class="prioridade emergencia">2</p>
+              <p class="descricao">Comprar teclado novo</p>
+              <input type="checkbox" id="" />
+            </div>
+            <div class="tarefa">
+              <p class="prioridade nao-emergencia">3</p>
+              <p class="descricao">Aprender outro instrumento</p>
+              <input type="checkbox" id="" />
+            </div>
+          </div>
+        </div>
+        -->
+      </section>
 
       <section class="menu">
         <ul class="menu_itens">
-          <li class="menu_item"><a href="#" class="menu_link">Home Page</a></li>
-          <li class="menu_item"><a href="#" class="menu_link">Usuário</a></li>
-          <li class="menu_item"><a href="#" class="menu_link">Sair</a></li>
+          <li class="menu_item">
+            <a id="home" href="#" class="menu_link"><i data-feather="home"></i></a>
+          </li>
+          <li class="menu_item">
+            <a id="user" href="#" class="menu_link"><i data-feather="user"></i></a>
+          </li>
+          <li class="menu_item">
+            <a id="sair" href="#" class="menu_link"><i data-feather="log-out"></i></a>
+          </li>
         </ul>
       </section>
+
+      <div id="aviso" class="aviso-container">
+        <div class="aviso">
+          <button class="fechar" id="fechar-aviso"><i data-feather="x"></i></button>
+          <h1 class="aviso_titulo">Coming Soon!</h1>
+          <img class="aviso_image" src="./assets/imagem-aviso.png" alt="">
+        </div>
+      </div>
     </main>
 
-    <footer>
-      <p class="copy-text">ChillOut 2022</p>
+    <!--footer>
+      <p class="copy-text">&copy ChillOut 2022</p>
       <div class="logo">ChillOut</div>
-    </footer>
+    </footer-->
+
+    <script src="https://unpkg.com/feather-icons"></script>
+    <script>
+      feather.replace();
+      </script>
+      <script src=./index.js></script>
   </body>
 </html>
